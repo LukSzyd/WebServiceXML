@@ -37,6 +37,7 @@ public class readXML {
     @WebMethod(operationName = "readXML")
     public String readXML() {
         try {
+            
             String filename = "properties.properties";
     	    input = readXML.class.getClassLoader().getResourceAsStream(filename);
             // load a properties file

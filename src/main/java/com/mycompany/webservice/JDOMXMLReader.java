@@ -37,11 +37,18 @@ import com.mycompany.webservice.Employee;
 import static com.mycompany.webservice.readXML.logger;
 import org.apache.log4j.Logger;
 
- 
+import com.mycompany.webservice.exportToCSV;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.Arrays;
+
  
 public class JDOMXMLReader {
     
+    private static exportToCSV exportToCsv;
     final static Logger logger = Logger.getLogger(readXML.class);
+    static String csvFile = "C:/logs/user.csv";
+    static FileWriter writer;
     public static String getFile(String fileName){
         //final String fileName = "/Users/pankaj/employees.xml";
         org.jdom2.Document jdomDoc;
@@ -62,13 +69,16 @@ public class JDOMXMLReader {
                 empList.add(emp);
                 logger.debug("This is debug : " + emp);
             }
-            //lets print Employees list information
+            
+            writer = new FileWriter(csvFile);
+            writer.flush();
             for (Employee emp : empList){
+                //lets print Employees list information
                 System.out.println(emp);
                 tmp.append(emp);
-                
+                saveToCsv(emp.toString());
             }
-                
+            writer.close();    
                 
         } catch (Exception e) {
         }
@@ -87,5 +97,14 @@ public class JDOMXMLReader {
         DOMBuilder domBuilder = new DOMBuilder();
         return domBuilder.build(doc);
  
+    }
+    
+    private static void saveToCsv(String tmp){
+       
+        try {
+            exportToCsv.writeLine(writer, Arrays.asList(tmp), ',', '"');
+        } catch (IOException ex) {
+            logger.error("This is error : " + ex);
+        }
     }
 }
