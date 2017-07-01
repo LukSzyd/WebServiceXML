@@ -81,6 +81,7 @@ public class JDOMXMLReader {
             writer.close();    
                 
         } catch (Exception e) {
+            logger.error("This is error : " + e);
         }
         return tmp.toString();
     }

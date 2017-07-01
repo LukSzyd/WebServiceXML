@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Lukasz
  */
-public class exportToCSV {
+class exportToCSV {
     private static final char DEFAULT_SEPARATOR = ',';
 
     public static void writeLine(Writer w, List<String> values) throws IOException {

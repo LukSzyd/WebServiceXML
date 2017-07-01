@@ -17,13 +17,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import javax.xml.ws.Endpoint;
 import org.apache.log4j.Logger;
 /**
  *
  * @author Lukasz
  */
 @WebService(serviceName = "readXML")
-public class readXML {
+class readXML {
 
     /**
      * This is a sample web service operation
@@ -53,4 +54,5 @@ public class readXML {
 		
         return reader.getFile(prop.getProperty("filePath"));
     }
+
 }

@@ -8,7 +8,7 @@ package multithreading;
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-
+import org.apache.log4j.Logger;
 /**
  *
  * @author Lukasz
@@ -16,12 +16,15 @@ import java.util.concurrent.BlockingQueue;
 public class App {
     private static BlockingQueue<Integer> queue = new ArrayBlockingQueue(5);
     final static Processor processor = new Processor();
+    final static Logger logger = Logger.getLogger(App.class);
     public static void main(String[] args) throws InterruptedException {
+        logger.debug("This is debug TEST!!!!!");
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    processor.produce();
+                    //processor.produce();
+                    producer();
                 } catch (InterruptedException ex) {
                     
                 }
@@ -31,7 +34,8 @@ public class App {
             @Override
             public void run() {
                 try {
-                    processor.consume();
+                    //processor.consume();
+                    consumer();
                 } catch (InterruptedException ex) {
                     
                 }
@@ -58,8 +62,8 @@ public class App {
             int a = random.nextInt(10);
             if(a == 0){
                 Integer value = queue.take();
-                System.out.println(a);
-                System.out.println("Zabrana wartość: " + value + "; Queue size is: " + queue.size());
+                logger.debug(a);
+                logger.debug("Zabrana wartość: " + value + "; Queue size is: " + queue.size());
             }
         }
     }
