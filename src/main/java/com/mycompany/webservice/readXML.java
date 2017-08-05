@@ -29,9 +29,9 @@ class readXML {
     /**
      * This is a sample web service operation
      */
-    JDOMXMLReader reader;
-    Properties prop = new Properties();
-    InputStream input = null;
+    private JDOMXMLReader reader;
+    private Properties prop = new Properties();
+    private InputStream input = null;
     
     final static Logger logger = Logger.getLogger(readXML.class);
     
